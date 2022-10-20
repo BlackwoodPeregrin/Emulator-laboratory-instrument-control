@@ -1,5 +1,5 @@
-# Emulator-laboratory-instrument-control
-multithreaded programming
+# Laboratory instrument control emulator
+# multithreaded programming
 
 Device:
 
@@ -23,16 +23,20 @@ Emulator operation:
 
 - If there are no commands in the queue, the handler updates the device state:
 
-For a pump:
+*************************************************
+
+-> For a pump:
 * Current operating mode: "Stopped" / "Speed"
+
 * Current speed. If the pump is on, i.e. in the "Speed" mode, the current speed is equal to the set one
 on command plus a little random noise. If disabled, the current speed is exactly 0.
 
-For pressure sensors D1, D2:
+-> For pressure sensors D1, D2:
 * Current pressure of each sensor. The pressure is equal to the commanded one (including if the sensor was zeroed on command) plus a small random noise.
 * Pressure difference D1 minus D2.
 
-- New commands during the valid period do not wake up the thread, but are queued.
+*************************************************
+New commands during the valid period do not wake up the thread, but are queued.
 
 - Possibility to change the period directly in the course of work is provided. When the period changes, the thread wakes up without waiting for the end of the current period.
 
